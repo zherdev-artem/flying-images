@@ -1,0 +1,41 @@
+=== Nazy Load ===
+
+Contributors: gijo
+Donate link: https://www.buymeacoffee.com/gijovarghese
+Tags: lazy, lazyload, native, performance, speed, fast
+Requires at least: 4.5
+Tested up to: 5.2
+Requires PHP: 5.6
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Lazy load images natively or using JavaScript
+
+== Description ==
+
+Lazy load images natively or using JavaScript
+
+== Installation ==
+
+#### From within WordPress
+
+1. Visit 'Plugins > Add New'
+1. Search for 'Nazy Load'
+1. Activate Nazy Load for WordPress from your Plugins page.
+1. Visit 'Settings -> Nazy Load' to configure
+
+#### Manually
+
+1. Upload the `nazy-load` folder to the `/wp-content/plugins/` directory
+1. Activate the Nazy Load plugin through the 'Plugins' menu in WordPress
+1. Visit 'Settings -> Nazy Load' to configure
+
+== Screenshots ==
+
+== Frequently Asked Questions ==
+ 
+== Changelog ==
+
+= 1.0.0 =
+- Initial release
