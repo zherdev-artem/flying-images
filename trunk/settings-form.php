@@ -35,6 +35,13 @@
                 <p class="description">Load images even before entering viewport (amount of pixels from the bottom of viewport, higher the better)</p>
             <td>
         </tr>
+        <tr>
+            <th scope="row"><label>Exclude Keywords</label></th>
+            <td>
+                <textarea name="exclude_keywords" rows="15"><?php echo implode('&#10;', $exclude_keywords); ?></textarea>
+                <p class="description">The list of keywords that should be keywords from lazy loading. It can be class name, image url, data attributes etc.</p>
+            </td>
+        </tr>
     </tbody>
     </table>
     <p class="submit">

@@ -3,14 +3,14 @@
  * The main file of the Flying Images
  *
  * @package flying-images
- * @version 1.0.1
+ * @version 1.1.0
  *
  * Plugin Name: Flying Images
  * Plugin URI: https://wordpress.org/plugins/nazy-load/
  * Description: Lazy load images natively or using JavaScript
  * Author: Gijo Varghese
  * Author URI: https://wpspeedmatters.com/
- * Version: 1.0.1
+ * Version: 1.1.0
  * Text Domain: flying-images
  */
 include('simple_html_dom.php');
@@ -18,7 +18,7 @@ include('simple_html_dom.php');
 
 // Define constant with current version
 if (!defined('FLYING_IMAGES_VERSION'))
-    define('FLYING_IMAGES_VERSION', '1.0.1');
+    define('FLYING_IMAGES_VERSION', '1.1.0');
 
 
 // Set default config on plugin load if not set
@@ -28,6 +28,8 @@ function flying_images_set_default_config() {
             update_option('flying_images_lazymethod', "nativejavascript");
         if (get_option('flying_images_margin') === false)
             update_option('flying_images_margin', 200);
+        if (get_option('flying_images_exclude_keywords') === false)
+            update_option('flying_images_exclude_keywords', ['data:image','logo']);
         update_option('FLYING_IMAGES_VERSION', FLYING_IMAGES_VERSION);
     }
 }
@@ -59,11 +61,15 @@ function flying_images_settings_view()
         $margin = is_numeric($margin) ? $margin : 200;
         update_option('flying_images_margin', $margin);
 
+        $keywords = array_map('trim', explode("\n", str_replace("\r", "", $_POST['exclude_keywords'])));
+        update_option('flying_images_exclude_keywords', $keywords);
+
     }
 
     // Get config from db for displaying in the form
     $lazymethod = get_option('flying_images_lazymethod');
     $margin = get_option('flying_images_margin');
+    $exclude_keywords = get_option('flying_images_exclude_keywords');
     
     // Settings form
     include 'settings-form.php';
@@ -91,12 +97,18 @@ function flying_images_callback($html) {
 	
   foreach($html->find('img') as $img) {
 
-    // Skip if the image is base64 image
-    if (strpos($img->src, 'data:image') !== false) continue;
-      
+    // Skip if the image if matched against exclude keywords
+    foreach(get_option('flying_images_exclude_keywords') as $keyword) {
+        
+        if (strpos($img->plaintext, $keyword) !== false) {
+            $img->setAttribute("exclude");
+            continue 2;
+        }
+    }
+
 	// Add native lazy loading
     $img->setAttribute("loading","lazy");
-      
+
 	// Transparent placeholder
     $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
