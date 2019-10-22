@@ -13,6 +13,7 @@
  * Version: 1.0.1
  * Text Domain: flying-images
  */
+include('simple_html_dom.php');
 
 
 // Define constant with current version
@@ -85,44 +86,35 @@ function flying_images_callback($html) {
   
   // Check if the code is HTML, otherwise return
   if ($html[0] !== "<") return $html;
-  
-  // Load the HTML code to parse
-  $dom = new DOMDocument();
-  $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_COMPACT | LIBXML_NOENT );
+
+  $html = str_get_html($html);
 	
-  $xpath = new DOMXPath($dom);
-
-  // Find all images
-  $images = $xpath->evaluate("//img");
-
-  foreach ($images as $image) {
+  foreach($html->find('img') as $img) {
 
     // Skip if the image is base64 image
-    if (strpos($dom->saveHTML($image), 'data:image') !== false) continue;
-
-    // Transparent placeholder
+    if (strpos($img->src, 'data:image') !== false) continue;
+      
+	// Add native lazy loading
+    $img->setAttribute("loading","lazy");
+      
+	// Transparent placeholder
     $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-
-    // Add native lazy loading
-    $image->setAttribute("loading", "lazy");
 
     // Move src (and srcset) to data attributes
     if ( get_option('flying_images_lazymethod') === "nativejavascript" ) {
-      $image->setAttribute("data-src", $image->getAttribute('src'));
-      $image->setAttribute("src", $placeholder);
 
-      if($image->getAttribute('srcset')) {
-        $image->setAttribute("data-srcset", $image->getAttribute('srcset'));
-        $image->setAttribute("srcset", $placeholder);
-      }
+        $img->setAttribute("data-src", $img->src);
+        $img->setAttribute("src", $placeholder);
+
+        if($img->srcset) {
+            $img->setAttribute("data-srcset", $img->srcset);
+            $img->setAttribute("srcset", $placeholder);
+        }
     }
-
+    
   }
 
-  // return modified HTML
-  $html = $dom->saveHTML();  
   return $html;
-
 }
 if(!is_admin()) { ob_start("flying_images_callback"); }
 
