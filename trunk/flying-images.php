@@ -92,41 +92,45 @@ function flying_images_callback($html) {
   
   // Check if the code is HTML, otherwise return
   if ($html[0] !== "<") return $html;
+  
+  try {
+    // Parse HTML
+    $newHtml = str_get_html($html);
 
-  $html = str_get_html($html);
-	
-  foreach($html->find('img') as $img) {
+    // Not HTML, return original
+    if(!is_object($newHtml)) return $html;
 
-    // Skip if the image if matched against exclude keywords
-    foreach(get_option('flying_images_exclude_keywords') as $keyword) {
+    // Find all images
+    $images = $newHtml->find('img');      
+    foreach($images as $img) {
+        // Skip if the image if matched against exclude keywords
+        foreach(get_option('flying_images_exclude_keywords') as $keyword) {
+            if (strpos($img->plaintext, $keyword) !== false) continue 2;
+        }
+
+        // Add native lazy loading
+        $img->setAttribute("loading","lazy");
+
+        // Transparent placeholder
+        $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+
+        // Move src (and srcset) to data attributes
+        if ( get_option('flying_images_lazymethod') === "nativejavascript" ) {
+            $img->setAttribute("data-src", $img->src);
+            $img->setAttribute("src", $placeholder);
+
+            if($img->srcset) {
+                $img->setAttribute("data-srcset", $img->srcset);
+                $img->removeAttribute("srcset");
+            }
+        }
         
-        if (strpos($img->plaintext, $keyword) !== false) {
-            $img->setAttribute("exclude");
-            continue 2;
-        }
     }
-
-	// Add native lazy loading
-    $img->setAttribute("loading","lazy");
-
-	// Transparent placeholder
-    $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-
-    // Move src (and srcset) to data attributes
-    if ( get_option('flying_images_lazymethod') === "nativejavascript" ) {
-
-        $img->setAttribute("data-src", $img->src);
-        $img->setAttribute("src", $placeholder);
-
-        if($img->srcset) {
-            $img->setAttribute("data-srcset", $img->srcset);
-            $img->setAttribute("srcset", $placeholder);
-        }
-    }
-    
+    return $newHtml;
   }
-
-  return $html;
+  catch(Exception $e) {
+    return $html;
+  }
 }
 if(!is_admin()) { ob_start("flying_images_callback"); }
 
