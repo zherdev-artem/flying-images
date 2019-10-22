@@ -13,7 +13,7 @@
  * Version: 1.1.0
  * Text Domain: flying-images
  */
-include('simple_html_dom.php');
+include('dom_parser.php');
 
 
 // Define constant with current version
