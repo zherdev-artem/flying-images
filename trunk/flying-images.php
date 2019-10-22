@@ -100,19 +100,19 @@ function flying_images_callback($html) {
     // Not HTML, return original
     if(!is_object($newHtml)) return $html;
 
+    // Transparent placeholder
+    $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+
     // Find all images
     $images = $newHtml->find('img');      
     foreach($images as $img) {
         // Skip if the image if matched against exclude keywords
         foreach(get_option('flying_images_exclude_keywords') as $keyword) {
-            if (strpos($img->plaintext, $keyword) !== false) continue 2;
+            if (strpos($img->outertext, $keyword) !== false) continue 2;
         }
 
         // Add native lazy loading
         $img->setAttribute("loading","lazy");
-
-        // Transparent placeholder
-        $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
         // Move src (and srcset) to data attributes
         if ( get_option('flying_images_lazymethod') === "nativejavascript" ) {
