@@ -10,21 +10,21 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lazy load images natively or using JavaScript
+Lazy load images natively (with an optional tiny JavaScript fallback)
 
 == Description ==
 
-Lazy load images natively or using JavaScript
+Lazy load images natively (with an optional tiny JavaScript fallback)
 
 **Demo**: [WP Speed Matters](https://wpspeedmatters.com)
 
 ## How it works?
 
-- **Native lazy load** - Rewrites entire HTML to add `loading="lazy"` to all images and leverage browser native way of loading loading. Fast, high performance, no need of JavaScript. Currently supported only in Chrome.
+- **Native lazy load** - Rewrites HTML to add loading="lazy" to all images and leverage browser native way of loading. Fast, high performance, no JavaScript. Currently supported only in Chrome.
 
-- **JavaScript lazy load** - Injects a tiny JS code (0.8KB, 0.3KB gzipped) which uses `intersectionObserver` to load images in the viewport, if natvie lazy load is not supported.
+- **JavaScript lazy load** - Injects a tiny JS code (0.8KB, 0.3KB gzipped) which uses intersectionObserver to load images in the viewport, if native lazy load is not supported.
 
-You can also configure to load images even before entering viewport in the settings.
+You can also configure the plugin to load images even before entering the viewport in the settings.
 
 == Installation ==
 
