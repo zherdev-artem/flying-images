@@ -59,6 +59,7 @@ Most of the lazy loading plugins rely on JavaScript lazy loading, which injects 
 = 1.2.0 =
 - Lazy load images in picture tag (also fixes issues for webp)
 - Automatic bottom margin height (removed option for custom margin)
+- Performance improvements
 
 = 1.1.2 =
 - Bug fix - Lazy load images in dynamically injected content
