@@ -1,16 +1,16 @@
 const flyingImages = function() {
   if ("loading" in HTMLImageElement.prototype) {
     // Native lazy loading is supported
-    document.querySelectorAll('img[loading="lazy"]').forEach(function(e) {
+    document.querySelectorAll('[loading="lazy"]').forEach(function(e) {
       if (e.dataset.srcset) e.srcset = e.dataset.srcset;
-      e.src = e.dataset.src;
+      if (e.dataset.src) e.src = e.dataset.src;
     });
   } else if (!window.IntersectionObserver) {
     // IntersectionObserver not supported (like IE). Load all images instantly
-    const e = document.querySelectorAll('img[loading="lazy"]');
+    const e = document.querySelectorAll('[loading="lazy"]');
     for (let i = 0; i < e.length; i++) {
       if (e[i].dataset.srcset) e[i].srcset = e[i].dataset.srcset;
-      e[i].src = e[i].dataset.src;
+      if (e[i].dataset.src) e[i].src = e[i].dataset.src;
     }
   } else {
     // Normal lazy loading using JavaScript
@@ -20,17 +20,17 @@ const flyingImages = function() {
           if (e.isIntersecting) {
             const s = e.target;
             if (s.dataset.srcset) s.srcset = s.dataset.srcset;
-            s.src = s.dataset.src;
+            if (s.dataset.src) s.src = s.dataset.src;
             s.removeAttribute("loading");
             t.unobserve(s);
           }
         });
       },
       {
-        rootMargin: "200px" // Needs to be configured via PHP
+        rootMargin: window.screen.height / 2 + "px"
       }
     );
-    document.querySelectorAll('img[loading="lazy"]').forEach(function(t) {
+    document.querySelectorAll('[loading="lazy"]').forEach(function(t) {
       e.observe(t);
     });
   }

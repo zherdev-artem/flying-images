@@ -10,11 +10,11 @@ Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lazy load images natively (with an optional tiny JavaScript fallback)
+High-performance Native Image Lazy Loading (with an optional tiny JavaScript fallback)
 
 == Description ==
 
-Lazy load images natively (with an optional tiny JavaScript fallback)
+High-performance Native Image Lazy Loading (with an optional tiny JavaScript fallback)
 
 **Demo**: [WP Speed Matters](https://wpspeedmatters.com)
 
@@ -55,6 +55,10 @@ If you choose 'Native only' (from settings), no JavaScript will be injected. Oth
 Most of the lazy loading plugins rely on JavaScript lazy loading, which injects a few KBs of JS. Flying Images using browser's native lazy loading. Optionally use JavaScript if browser is not supported.
 
 == Changelog ==
+
+= 1.2.0 =
+- Lazy load images in picture tag (also fixes issues for webp)
+- Automatic bottom margin height (removed option for custom margin)
 
 = 1.1.2 =
 - Bug fix - Lazy load images in dynamically injected content
