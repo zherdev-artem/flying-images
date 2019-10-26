@@ -74,7 +74,7 @@ function flying_images_add_action_links($links) {
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'flying_images_add_action_links');
 
-function flying_images_rewrite_images ($elements) {
+function flying_images_rewrite_images($elements) {
     // Transparent placeholder
     $placeholder = "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
 
