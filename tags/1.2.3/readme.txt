@@ -16,15 +16,24 @@ High-performance Native Image Lazy Loading (with an optional tiny JavaScript fal
 
 High-performance Native Image Lazy Loading (with an optional tiny JavaScript fallback)
 
-**Demo**: [WP Speed Matters](https://wpspeedmatters.com)
+## Quick Links
 
-## How it works?
+- Demo: [https://wpspeedmatters.com](https://wpspeedmatters.com)
+- Join our [Facebook Group](https://www.facebook.com/groups/wpspeedmatters/), a community of WordPress speed enthusiasts
+- [Buy me a coffee](https://www.buymeacoffee.com/gijovarghese)
 
-- **Native lazy load** - Rewrites HTML to add loading="lazy" to all images and leverage browser native way of loading. Fast, high performance, no JavaScript. Currently supported only in Chrome.
+## How it Works?
 
-- **JavaScript lazy load** - Injects a tiny JS code (0.8KB, 0.3KB gzipped) which uses intersectionObserver to load images in the viewport, if native lazy load is not supported.
+- **Uses native lazy loading** – Use native lazy loading if available (currently supported only in Chrome), otherwise use JavaScript to lazy load images.
+Load images even before entering viewport – While other plugins load images when they’re ‘inside’ the viewport, Flying Images load them when they’re about to enter the viewport.
+- **Tiny JavaScript** – Only 0.5KB, gzipped, minified.
+- **Optionally use native only** – Only want to support Chrome? You can switch to “native only” which injects zero JavaScript.
+- **Rewrites entire HTML** – Never miss an image from lazy loading (even the ones injected by gallery plugins).
+- **Transparent placeholder** – A tiny base64 transparent is added to all images. No more flickering while loading images.
+- **Exclude keywords** – Almost all lazy loading plugins provide exclude feature, however, Flying Images can also exclude images from the images’ parent node. Helpful if your image doesn’t have a class name.
+- **Supports IE and JavaScript disabled browsers** – All images are loaded instantly if is Internet Explorer or even if JavaScript is entirely disabled (using noscript tag).
 
-You can also configure the plugin to load images even before entering the viewport in the settings.
+**Note: Make sure lazy loading is disabled in your cache plugin.**
 
 == Installation ==
 
@@ -43,16 +52,6 @@ You can also configure the plugin to load images even before entering the viewpo
 
 == Screenshots ==
 1. Flying Images Settings
-
-== Frequently Asked Questions ==
-
-= Does it inject JavaScript? =
-
-If you choose 'Native only' (from settings), no JavaScript will be injected. Otherwise it injects a JS code of 0.8KB  (0.3KB gzipped).
-
-= How is it different from other lazy loading plugins? =
-
-Most of the lazy loading plugins rely on JavaScript lazy loading, which injects a few KBs of JS. Flying Images using browser's native lazy loading. Optionally use JavaScript if browser is not supported.
 
 == Changelog ==
 
