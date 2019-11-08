@@ -28,10 +28,11 @@
                 <p class="description">The list of keywords that should be keywords from lazy loading. It can be class name, image url, data attributes etc.</p>
             </td>
         </tr>
-         <tr>
-            <th scope="row"><label>Add missing responsive images (srcset)</label></th>
+        <tr>
+            <th scope="row"><label>Add responsive images</label></th>
             <td>
                 <input name="responsive_images" type="checkbox" value="1" <?php if($responsive_images) echo "checked"; ?>>
+                <p class="description">Use <code>srcset</code> to deliver resized images based on device width</p>
             </td>
         </tr>
     </tbody>
