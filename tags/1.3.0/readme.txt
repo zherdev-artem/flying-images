@@ -4,7 +4,7 @@ Contributors: gijo
 Donate link: https://www.buymeacoffee.com/gijovarghese
 Tags: lazy, lazyload, native, performance, speed, fast
 Requires at least: 4.5
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.6
 Stable tag: 1.3.0
 License: GPLv2 or later
