@@ -21,23 +21,23 @@ function flying_pages_settings_compression() {
                 </td>
             </tr>
             <tr>
-            <th scope="row"><label>Quality</label></th>
-            <td>
-                <select name="quality" value="<?php echo $quality; ?>">
-                    <option value="100" <?php if ($quality == 100) {echo 'selected';} ?>>100%</option>
-                    <option value="90" <?php if ($quality == 90) {echo 'selected';} ?>>90%</option>
-                    <option value="80" <?php if ($quality == 80) {echo 'selected';} ?>>80%</option>
-                    <option value="70" <?php if ($quality == 70) {echo 'selected';} ?>>70%</option>
-                    <option value="60" <?php if ($quality == 60) {echo 'selected';} ?>>60%</option>
-                    <option value="50" <?php if ($quality == 50) {echo 'selected';} ?>>50%</option>
-                    <option value="40" <?php if ($quality == 40) {echo 'selected';} ?>>40%</option>
-                    <option value="30" <?php if ($quality == 30) {echo 'selected';} ?>>30%</option>
-                    <option value="20" <?php if ($quality == 20) {echo 'selected';} ?>>20%</option>
-                    <option value="10" <?php if ($quality == 10) {echo 'selected';} ?>>10%</option>
-                </select>
-                <p class="description">TODO</p>
-            <td>
-        </tr>
+                <th scope="row"><label>Quality</label></th>
+                <td>
+                    <select name="quality" value="<?php echo $quality; ?>">
+                        <option value="100" <?php if ($quality == 100) {echo 'selected';} ?>>100%</option>
+                        <option value="90" <?php if ($quality == 90) {echo 'selected';} ?>>90%</option>
+                        <option value="80" <?php if ($quality == 80) {echo 'selected';} ?>>80%</option>
+                        <option value="70" <?php if ($quality == 70) {echo 'selected';} ?>>70%</option>
+                        <option value="60" <?php if ($quality == 60) {echo 'selected';} ?>>60%</option>
+                        <option value="50" <?php if ($quality == 50) {echo 'selected';} ?>>50%</option>
+                        <option value="40" <?php if ($quality == 40) {echo 'selected';} ?>>40%</option>
+                        <option value="30" <?php if ($quality == 30) {echo 'selected';} ?>>30%</option>
+                        <option value="20" <?php if ($quality == 20) {echo 'selected';} ?>>20%</option>
+                        <option value="10" <?php if ($quality == 10) {echo 'selected';} ?>>10%</option>
+                    </select>
+                    <p class="description">TODO</p>
+                <td>
+            </tr>
         </tbody>
         </table>
         <p class="submit">

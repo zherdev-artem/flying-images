@@ -22,7 +22,7 @@ function flying_images_add_cdn($images) {
         }
 
         // Generate Statically CDN URL
-        $src = $statically_url.preg_replace("/(^\w+:|^)\/\//", "", $image->src);
+        $src = preg_replace("/(^\w+:|^)\/\//", $statically_url, $image->src);
         
         // Append quality if needed
         if ($compression_enabled) $src .= "?quality={$quality}";
@@ -31,23 +31,29 @@ function flying_images_add_cdn($images) {
         $image->setAttribute("src", $src);
 
         // Skip adding responsive images, if not enabled
-        if (!$responsiveness_enabled) continue;
-
-        // Generate srcset and add it to image
-        $srcset = "";
-        foreach ($available_sizes as $size) {
-            if ($compression_enabled) {
-                $srcset .= "{$src}&w={$size} {$size}w, \n";
-            } else {
-                $srcset .= "{$src}?w={$size} {$size}w, \n";
+        if ($responsiveness_enabled){
+            // Generate srcset and add it to image
+            $srcset = "";
+            foreach ($available_sizes as $size) {
+                if ($compression_enabled) {
+                    $srcset .= "{$src}&w={$size} {$size}w, \n";
+                } else {
+                    $srcset .= "{$src}?w={$size} {$size}w, \n";
+                }
             }
-        }
-        $image->setAttribute("srcset", $srcset);
+            $image->setAttribute("srcset", $srcset);
 
-        // Find largest size and add it to 'sizes'
-        $largest_size = end($available_sizes);
-        $sizes = "(max-width: {$largest_size}px) 100vw, {$largest_size}px";
-        $image->setAttribute("sizes", $sizes);
+            // Find largest size and add it to 'sizes'
+            $largest_size = end($available_sizes);
+            $sizes = "(max-width: {$largest_size}px) 100vw, {$largest_size}px";
+            $image->setAttribute("sizes", $sizes);
+        } 
+        else if($image->srcset) {
+            // Rewrite srcset to add Statically CDN
+            $image->srcset = preg_replace("/(\w+:|^)\/\//", $statically_url, $image->srcset);
+            // Add quality if compression is enabled
+            $image->srcset = preg_replace("/(\.(jpg|jpeg|png|gif))/", "$1?quality={$quality}", $image->srcset);
+        }
     }
 }
 
@@ -62,7 +68,7 @@ function flying_images_add_lazy_load($images) {
 
     foreach ($images as $image) {
         // Exclude base64 images
-        if (strpos($image->src, "data:iamge") !== false) continue;
+        if (strpos($image->src, "data:image") !== false) continue;
 
         // Skip if the image if matched against exclude keywords
         foreach ($exclude_keywords as $keyword) {

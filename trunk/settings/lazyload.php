@@ -20,6 +20,13 @@ function flying_pages_settings_lazy_load() {
     <table class="form-table" role="presentation">
     <tbody>
         <tr>
+            <th scope="row"><label>Enable lazy loading</label></th>
+            <td>
+                <input name="enable_lazyloading" type="checkbox" value="1" <?php if ($enable_lazyloading) {echo "checked";} ?>>
+                <p class="description">TODO</p>
+            </td>
+        </tr>    
+        <tr>
             <th scope="row"><label>Lazy load method</label></th>
             <td>
                 <select name="lazymethod" value="<?php echo $lazymethod; ?>">

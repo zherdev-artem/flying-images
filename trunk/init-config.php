@@ -1,10 +1,6 @@
 <?php
 // Set default config on plugin load if not set
-var_dump(get_option('flying_images_enable_cdn') === false);
-var_dump(get_option('flying_images_enable_cdn'));
-
-function flying_images_set_default_config()
-{
+function flying_images_set_default_config() {
 
     if (FLYING_IMAGES_VERSION !== get_option('FLYING_IMAGES_VERSION')) {
         

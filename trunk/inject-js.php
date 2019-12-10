@@ -1,8 +1,7 @@
 <?php
 // Inject JavaScript code for lazy loading
 
-function flying_images_inject_js()
-{
+function flying_images_inject_js() {
     $lazymethod = get_option('flying_images_lazymethod');
     $margin = get_option('flying_images_margin');
 
