@@ -5,20 +5,22 @@
  * Description: High-performance Native Image Lazy Loading
  * Author: Gijo Varghese
  * Author URI: https://wpspeedmatters.com/
- * Version: 1.3.3
+ * Version: 2.0.0
  * Text Domain: flying-images
  */
 
 // If this file is called directly, abort.
-if (! defined('WPINC'))
+if (! defined('WPINC')) {
     die;
+}
 
 // Define constant with current version
-if (!defined('FLYING_IMAGES_VERSION'))
-    define('FLYING_IMAGES_VERSION', '1.3.3');
+if (!defined('FLYING_IMAGES_VERSION')) {
+    define('FLYING_IMAGES_VERSION', '2.0.0');
+}
 
-include('set-config.php');
-include('settings-view.php');
+include('init-config.php');
+include('settings/index.php');
 include('html-rewrite.php');
 include('inject-js.php');
 include('shortcuts.php');
