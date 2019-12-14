@@ -5,6 +5,8 @@
     include('cdn.php');
     include('compression.php');
     include('responsiveness.php');
+    include('webp.php');
+    include('support.php');
 
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : "lazyload";
 
@@ -18,6 +20,8 @@
     <a href="?page=flying-images&tab=cdn" class="nav-tab <?php echo $active_tab == 'cdn' ? 'nav-tab-active' : ''; ?>">CDN</a>
     <a href="?page=flying-images&tab=compression" class="nav-tab <?php echo $active_tab == 'compression' ? 'nav-tab-active' : ''; ?>">Compression</a>
     <a href="?page=flying-images&tab=responsiveness" class="nav-tab <?php echo $active_tab == 'responsiveness' ? 'nav-tab-active' : ''; ?>">Responsiveness</a>
+    <a href="?page=flying-images&tab=webp" class="nav-tab <?php echo $active_tab == 'webp' ? 'nav-tab-active' : ''; ?>">WebP</a>
+    <a href="?page=flying-images&tab=support" class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?>">Support Us</a>
 </h2>
 
 <?php
@@ -33,6 +37,12 @@
             break;
         case 'responsiveness':
             flying_pages_settings_responsiveness();
+            break;
+        case 'webp':
+            flying_pages_settings_webp();
+            break;
+        case 'support':
+            flying_pages_settings_support();
             break;
         default:
             flying_pages_settings_lazy_load();

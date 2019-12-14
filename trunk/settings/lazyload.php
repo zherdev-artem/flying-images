@@ -23,7 +23,6 @@ function flying_pages_settings_lazy_load() {
             <th scope="row"><label>Enable lazy loading</label></th>
             <td>
                 <input name="enable_lazyloading" type="checkbox" value="1" <?php if ($enable_lazyloading) {echo "checked";} ?>>
-                <p class="description">TODO</p>
             </td>
         </tr>    
         <tr>
@@ -35,9 +34,9 @@ function flying_pages_settings_lazy_load() {
                     <option value="nativejavascript" <?php if ($lazymethod == "nativejavascript") {echo 'selected';} ?>>Native + JavaScript</option>
                 </select>
                 <p class="description">
-                    <b>Native only</b>: No JavaScript, lazy load images using browser's native way (works only in Chrome for now).<br/>
-                    <b>JavaScript only</b>: TODO<br/>
-                    <b>Native + JavaScript</b>: Uses native lazy loading if available, otherwise use JavaScript(<1KB).
+                    <b>Native only</b>         - No JavaScript, lazy load images using browser's native way (works only in Chrome for now)<br/>
+                    <b>JavaScript only</b>     - Use JavaScript's IntersectionObserver to lazy load images<br/>
+                    <b>Native + JavaScript</b> - Uses native lazy loading if available, otherwise use JavaScript(<1KB)
                 </p>
             <td>
         </tr>
@@ -52,14 +51,14 @@ function flying_pages_settings_lazy_load() {
                     <option value="400" <?php if ($margin == 400) {echo 'selected';} ?>>400px</option>
                     <option value="500" <?php if ($margin == 500) {echo 'selected';} ?>>500px</option>
                 </select>
-                <p class="description">Load images even before entering viewport (amount of pixels from the bottom of viewport, higher the better)</p>
+                <p class="description">Load images even before entering the viewport. Amount of pixels from the bottom of viewport (higher the better)</p>
             <td>
         </tr>
         <tr>
             <th scope="row"><label>Exclude Keywords</label></th>
             <td>
-                <textarea name="exclude_keywords" rows="15"><?php echo implode('&#10;', $exclude_keywords); ?></textarea>
-                <p class="description">The list of keywords that should be keywords from lazy loading. It can be class name, image url, data attributes etc.</p>
+                <textarea name="exclude_keywords" rows="4"><?php echo implode('&#10;', $exclude_keywords); ?></textarea>
+                <p class="description">The list of keywords that should be excluded from lazy loading. It can be a class name, image URL, data attributes etc. Add keywords in new lines</p>
             </td>
         </tr>
     </tbody>

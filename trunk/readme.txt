@@ -1,4 +1,4 @@
-=== Flying Images ===
+=== Flying Images by WP Speed Matters ===
 
 Contributors: gijo
 Donate link: https://www.buymeacoffee.com/gijovarghese

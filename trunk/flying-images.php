@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Flying Images
+ * Plugin Name: Flying Images by WP Speed Matters
  * Plugin URI: https://wordpress.org/plugins/nazy-load/
- * Description: High-performance Native Image Lazy Loading
+ * Description: TODO
  * Author: Gijo Varghese
  * Author URI: https://wpspeedmatters.com/
  * Version: 2.0.0

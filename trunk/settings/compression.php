@@ -5,8 +5,11 @@ function flying_pages_settings_compression() {
         update_option('flying_images_quality', sanitize_text_field($_POST['quality']));
     }
 
+    $enable_cdn = get_option('flying_images_enable_cdn');
     $enable_compression = get_option('flying_images_enable_compression');
     $quality = get_option('flying_images_quality');
+
+    if(!$enable_cdn) echo '<br/><div class="notice notice-error is-dismissible"><p>CDN must be enabled for Compression</p></div>';
     
     ?>
     <form method="POST">
@@ -17,11 +20,11 @@ function flying_pages_settings_compression() {
                 <th scope="row"><label>Enable Compression</label></th>
                 <td>
                     <input name="enable_compression" type="checkbox" value="1" <?php if ($enable_compression) {echo "checked";} ?>>
-                    <p class="description">TODO</p>
+                    <p class="description">Compress images on the fly. If your images are already compressed using other plugins you can turn this off</p>
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label>Quality</label></th>
+                <th scope="row"><label>Compression Quality</label></th>
                 <td>
                     <select name="quality" value="<?php echo $quality; ?>">
                         <option value="100" <?php if ($quality == 100) {echo 'selected';} ?>>100%</option>
@@ -35,7 +38,6 @@ function flying_pages_settings_compression() {
                         <option value="20" <?php if ($quality == 20) {echo 'selected';} ?>>20%</option>
                         <option value="10" <?php if ($quality == 10) {echo 'selected';} ?>>10%</option>
                     </select>
-                    <p class="description">TODO</p>
                 <td>
             </tr>
         </tbody>
