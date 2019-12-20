@@ -58,7 +58,7 @@ The complete solution for image optimization
 - [BUGFIX] Support relative URLs
 
 = 2.0.0 =
-Major update!
+- Major update!
 - [New] Free CDN powered by [Statically](https://statically.io)
 - [New] On the fly WebP
 - [New] On the fly image compression
