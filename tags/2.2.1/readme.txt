@@ -53,9 +53,8 @@ The complete solution for image optimization
 == Changelog ==
 
 = 2.2.1 =
-- [NEW] Responsive images now collects image's width in HTML
-- [BUGFIX] Responsive images ignoring device widths higher than image's width
 - [BUGFIX] CDN not working on relative paths
+- [BUGFIX] Removing quotes in background image URLs for compatibility with Oxygen
 
 = 2.2.0 =
 - [NEW] Add CDN to WooCommerce dynamically injected thumbnails

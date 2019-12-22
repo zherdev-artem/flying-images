@@ -33,23 +33,19 @@ function flying_images_add_responsiveness($images) {
         $srcset = "";
         
         // Get image's width
-        $max_width = $image->width ? $image->width : flying_images_get_attachment_width($image->src);
-
-        // Push and sort max width to available widths
-        if($max_width) {
-            array_push($available_widths, $max_width);
-            sort($available_widths);
-        }
+        $max_width = flying_images_get_attachment_width($image->src);
 
         foreach ($available_widths as $width) {
-			$image_width = $width;
 
-            // Restrict image width to max width
-            if($max_width && $width >= ($max_width-200)) $image_width = $max_width;
+            // Exclude available widths greater than the original image's width
+            if($max_width && $width >= ($max_width-200)) continue;
 
             // Append src with width to srcset
-            $srcset .= "{$image->src}?w={$image_width} {$width}w, \n";
+            $srcset .= "{$image->src}?w={$width} {$width}w, \n";
         }
+
+        // Add largest width ad the end of srcset
+        if($max_width) $srcset .= "{$image->src} {$max_width}w";
 
         // Apply srcset
         $image->setAttribute("srcset", $srcset);
@@ -157,11 +153,11 @@ function flying_images_process_background_images($images, $cdn_enabled, $compres
 
             // Add lazy loading if enabled
             if($lazy_loading_enabled) {
-                $style = "{$matches[1]}lazy-background-image:url('{$image_url}'){$matches[3]}";
+                $style = "{$matches[1]}lazy-background-image:url({$image_url}){$matches[3]}";
                 $image->setAttribute("data-loading","lazy-background");
             }
             else {
-                $style = "{$matches[1]}background-image:url('{$image_url}'){$matches[3]}";
+                $style = "{$matches[1]}background-image:url({$image_url}){$matches[3]}";
             }
 
             // Update style
