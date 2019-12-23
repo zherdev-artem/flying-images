@@ -166,6 +166,29 @@ function flying_images_process_background_images($images, $cdn_enabled, $compres
     }
 }
 
+function flying_images_add_cdn_to_styles($styles, $compression_enabled, $quality) {
+
+    $statically_url = "https://cdn.statically.io/img/";
+
+    foreach ($styles as $style) {
+        // Split inline style to 3 parts, before background image, image url, after background image
+        $regex = '/(.*)background.*:\s*url\((?:\'|")*(.*(?:\.(?:jpg|jpeg|png|gif|svg)))(?:\'|")*\)(.*)/s';
+
+        if(preg_match($regex, $style->innertext, $matches)) {
+            
+            // Add Statically CDN if enabled
+            $image_url = preg_replace("/(^\w+:|^)\/\//", $statically_url, $matches[2]);
+            
+            // Add compression if enabled and images are not svg
+            if($compression_enabled && strpos($image_url, '.svg') === false)
+                $image_url .= "?quality={$quality}";
+
+            // Update style
+            $style->innertext = "{$matches[1]}background-image:url({$image_url}){$matches[3]}";
+        }
+    }
+}
+
 function flying_images_process_woocommerce_thumbnails($images, $compression_enabled, $quality) {
 
     $statically_url = "https://cdn.statically.io/img/";
@@ -234,6 +257,10 @@ function flying_images_rewrite_html($html) {
         // Process background images
         $background_images = $newHtml->find('[style*=background]');
         flying_images_process_background_images($background_images, $cdn_enabled, $compression_enabled, $quality, $lazy_loading_enabled);
+
+        // Process background images in style tags
+        $styles = $newHtml->find('style');
+        if($cdn_enabled) flying_images_add_cdn_to_styles($styles, $compression_enabled, $quality);
 
         // Process WooCommerce thumbnails
         $woocommerce_thumbnails = $newHtml->find('div[data-thumb]');
