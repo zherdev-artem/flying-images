@@ -53,7 +53,7 @@ The complete solution for image optimization
 == Changelog ==
 
 = 2.2.2 =
-- [BUGFIX] Warning when lazy load or cdn exlude list is empty
+- [BUGFIX] Warning when lazy load or cdn exclude list is empty
 
 = 2.2.1 =
 - [BUGFIX] CDN not working on relative paths
