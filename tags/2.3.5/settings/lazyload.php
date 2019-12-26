@@ -62,7 +62,7 @@ function flying_pages_settings_lazy_load() {
         <tr>
             <th scope="row"><label>Exclude Keywords</label></th>
             <td>
-                <textarea name="exclude_keywords" rows="4"><?php echo implode('&#10;', $exclude_keywords); ?></textarea>
+                <textarea name="exclude_keywords" rows="4" cols="50"><?php echo implode('&#10;', $exclude_keywords); ?></textarea>
                 <p class="description">The list of keywords that should be excluded from lazy loading. It can be a class name, image URL, data attributes etc. Add keywords in new lines</p>
             </td>
         </tr>

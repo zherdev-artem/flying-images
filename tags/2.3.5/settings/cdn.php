@@ -26,7 +26,7 @@ function flying_pages_settings_cdn() {
             <tr>
                 <th scope="row"><label>Exclude Keywords</label></th>
                 <td>
-                    <textarea name="cdn_exclude_keywords" rows="4"><?php echo implode('&#10;', $cdn_exclude_keywords); ?></textarea>
+                    <textarea name="cdn_exclude_keywords" rows="4" cols="50"><?php echo implode('&#10;', $cdn_exclude_keywords); ?></textarea>
                     <p class="description">The list of keywords that should be excluded from adding CDN. Add keywords in new lines</p>
                 </td>
             </tr>
