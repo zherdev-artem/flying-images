@@ -53,7 +53,7 @@ The complete solution for image optimization
 == Changelog ==
 
 = 2.4.0 =
-- [NEW] Skip class "skip-lazy" and data attribute "data-skip-lazy" by default (for compatibility with upcoming inbuilt lazy loading in WordPress core)
+- [NEW] Skip class "skip-lazy" and data attribute "data-skip-lazy" by default
 
 = 2.3.10 =
 - [BUGFIX] Revert bug in last update
