@@ -1,5 +1,6 @@
 <?php
 include('lib/dom-parser.php');
+include('lib/w3tc-bridge.php');
 
 function flying_images_get_attachment_width($url) {
     try {
@@ -355,4 +356,6 @@ function flying_images_rewrite_html($html) {
     }
 }
 
-if (!is_admin()) ob_start("flying_images_rewrite_html");
+if (!is_admin() && apply_filters('flying_images_output_buffer', true)) {
+    ob_start("flying_images_rewrite_html");
+}
