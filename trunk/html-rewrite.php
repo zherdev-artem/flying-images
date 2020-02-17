@@ -349,7 +349,7 @@ function flying_images_rewrite_html($html) {
         $background_images = $newHtml->find('[style*=background]');
         flying_images_process_background_images($background_images, $cdn_enabled, $compression_enabled, $quality, $lazy_loading_enabled);
         
-        return $newHtml;
+        return apply_filters('flying_images_rewrite_html_processed', $newHtml);
 
     } catch (Exception $e) {
         return $html;
